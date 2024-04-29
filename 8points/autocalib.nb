@@ -1,0 +1,373 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     11043,        286]*)
+(*NotebookOutlinePosition[     11688,        308]*)
+(*  CellTagsIndexPosition[     11644,        304]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[{
+    \(\(vece1 = {e11, e12, e13};\)\), "\[IndentingNewLine]", 
+    \(\(vect = {1, t, 0};\)\), "\[IndentingNewLine]", 
+    \(\(matA1 = {{a1, 0, 0}, {0, a1, 0}, {0, 0, 
+            1}};\)\), "\[IndentingNewLine]", 
+    \(\(matA2 = {{a2, 0, 0}, {0, a2, 0}, {0, 0, 
+            1}};\)\), "\[IndentingNewLine]", 
+    \(\(matF = {{f11, f12, f13}, {f21, f22, f23}, {f31, f32, 
+            f33}};\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(tmp1 = 
+        Transpose[matA1] . Cross[vece1, vect];\)\), "\[IndentingNewLine]", 
+    \(\(k10 = Coefficient[tmp1 . tmp1, t, 0];\)\), "\[IndentingNewLine]", 
+    \(\(k11 = Coefficient[tmp1 . tmp1, t, 1];\)\), "\[IndentingNewLine]", 
+    \(\(k12 = Coefficient[tmp1 . tmp1, t, 2];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(tmp2 = 
+        Transpose[
+            matA2] . \((Transpose[matF] . 
+              vect)\);\)\), "\[IndentingNewLine]", 
+    \(\(k20 = Coefficient[tmp2 . tmp2, t, 0];\)\), "\[IndentingNewLine]", 
+    \(\(k21 = Coefficient[tmp2 . tmp2, t, 1];\)\), "\[IndentingNewLine]", 
+    \(\(k22 = Coefficient[tmp2 . tmp2, t, 2];\)\)}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Collect[k10\ k21 - k11\ k20, {a1, a2}]\)], "Input"],
+
+Cell[BoxData[
+    \(2\ e11\ e12\ f13\^2 + 
+      a2\^2\ \((2\ e11\ e12\ f11\^2 + 2\ e11\ e12\ f12\^2 + 
+            2\ e12\^2\ f11\ f21 + 2\ e12\^2\ f12\ f22)\) + 
+      2\ e12\^2\ f13\ f23 + 
+      a1\^2\ \((a2\^2\ \((2\ e13\^2\ f11\ f21 + 2\ e13\^2\ f12\ f22)\) + 
+            2\ e13\^2\ f13\ f23)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({k10, k11, k12}\)], "Input"],
+
+Cell[BoxData[
+    \({e12\^2 + a1\^2\ e13\^2, \(-2\)\ e11\ e12, 
+      e11\^2 + a1\^2\ e13\^2}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({k20, k21, k22}\)], "Input"],
+
+Cell[BoxData[
+    \({a2\^2\ f11\^2 + a2\^2\ f12\^2 + f13\^2, 
+      2\ a2\^2\ f11\ f21 + 2\ a2\^2\ f12\ f22 + 2\ f13\ f23, 
+      a2\^2\ f21\^2 + a2\^2\ f22\^2 + f23\^2}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqn1 = 
+      Collect[k10\ k21 - k11\ k20 /. {a1^2 \[Rule] a12, 
+            a2^2 \[Rule] a22}, {a12, a22}]\)], "Input"],
+
+Cell[BoxData[
+    \(2\ e11\ e12\ f13\^2 + 
+      a22\ \((2\ e11\ e12\ f11\^2 + 2\ e11\ e12\ f12\^2 + 
+            2\ e12\^2\ f11\ f21 + 2\ e12\^2\ f12\ f22)\) + 
+      2\ e12\^2\ f13\ f23 + 
+      a12\ \((a22\ \((2\ e13\^2\ f11\ f21 + 2\ e13\^2\ f12\ f22)\) + 
+            2\ e13\^2\ f13\ f23)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eqn2 = 
+      Collect[k11\ k22 - k21\ k12 /. {a1^2 \[Rule] a12, 
+            a2^2 \[Rule] a22}, {a12, a22}]\)], "Input"],
+
+Cell[BoxData[
+    \(a22\ \((\(-2\)\ e11\^2\ f11\ f21 - 2\ e11\ e12\ f21\^2 - 
+            2\ e11\^2\ f12\ f22 - 2\ e11\ e12\ f22\^2)\) - 
+      2\ e11\^2\ f13\ f23 - 2\ e11\ e12\ f23\^2 + 
+      a12\ \((a22\ \((\(-2\)\ e13\^2\ f11\ f21 - 2\ e13\^2\ f12\ f22)\) - 
+            2\ e13\^2\ f13\ f23)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Solve[{eqn1 \[Equal] 0, eqn2 \[Equal] 0}, {a12, a22}]\)], "Input"],
+
+Cell[BoxData[
+    \({{a12 \[Rule] \((e11\^2\ f11\ f13\^2\ f21 + e11\ e12\ f13\^2\ f21\^2 + 
+                e11\^2\ f12\ f13\^2\ f22 + e11\ e12\ f13\^2\ f22\^2 - 
+                e11\^2\ f11\^2\ f13\ f23 - e11\^2\ f12\^2\ f13\ f23 + 
+                e12\^2\ f13\ f21\^2\ f23 + e12\^2\ f13\ f22\^2\ f23 - 
+                e11\ e12\ f11\^2\ f23\^2 - e11\ e12\ f12\^2\ f23\^2 - 
+                e12\^2\ f11\ f21\ f23\^2 - 
+                e12\^2\ f12\ f22\ f23\^2)\)/\((e13\^2\ \((\(-f11\)\ f13\^2\ \
+f21 - f12\ f13\^2\ f22 + f11\^2\ f13\ f23 + f12\^2\ f13\ f23 - 
+                    f13\ f21\^2\ f23 - f13\ f22\^2\ f23 + f11\ f21\ f23\^2 + 
+                    f12\ f22\ f23\^2)\))\), 
+        a22 \[Rule] \((e11\ e12\ f13\^2 - e11\^2\ f13\ f23 + 
+                e12\^2\ f13\ f23 - 
+                e11\ e12\ f23\^2)\)/\((\(-e11\)\ e12\ f11\^2 - 
+                e11\ e12\ f12\^2 + e11\^2\ f11\ f21 - e12\^2\ f11\ f21 + 
+                e11\ e12\ f21\^2 + e11\^2\ f12\ f22 - e12\^2\ f12\ f22 + 
+                e11\ e12\ f22\^2)\)}}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      F\:884c\:5217\:306e\:5de6\:304b\:3089\:304b\:3051\:30660\:3068\:306a\
+\:308b\:30a8\:30d4\:30dd - \:30ebe1\:3092\:6c42\:3081\:308b*) \
+\)\(calcEpipole1[
+        fmat_] := \[IndentingNewLine]Module[{eigenveclist, fvec, 
+          e1vec}, \[IndentingNewLine]eigenveclist = 
+          Eigenvectors[fmat . Transpose[fmat]]; \[IndentingNewLine]fvec = 
+          eigenveclist[\([3]\)]; \[IndentingNewLine]e1vec = 
+          fvec/fvec[\([3]\)]; \[IndentingNewLine]e1vec]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ F\:884c\:5217\:304b\:3089, 
+      2  \:500b\:306e\:7126\:70b9\:8ddd\:96e2\:3092\:6c42\:3081\:308b\:95a2\
+\:6570*) \)\(\[IndentingNewLine]\)\(\(calcF1F2FromFMat[fmat_] := 
+      Module[{epi1, replace}, \[IndentingNewLine]epi1 = 
+          calcEpipole1[
+            fmat]; \[IndentingNewLine]replace = {f11 \[Rule] 
+              fmat[\([1, 1]\)], \[IndentingNewLine]f12 \[Rule] 
+              fmat[\([1, 2]\)], \[IndentingNewLine]f13 -> 
+              fmat[\([1, 3]\)], \[IndentingNewLine]f21 -> 
+              fmat[\([2, 1]\)], \[IndentingNewLine]f22 -> 
+              fmat[\([2, 2]\)], \[IndentingNewLine]f23 -> 
+              fmat[\([2, 3]\)], \[IndentingNewLine]f31 -> 
+              fmat[\([3, 1]\)], \[IndentingNewLine]f32 -> 
+              fmat[\([3, 2]\)], \[IndentingNewLine]f33 -> 
+              fmat[\([3, 3]\)], \[IndentingNewLine]e11 \[Rule] 
+              epi1[\([1]\)], \[IndentingNewLine]e12 \[Rule] 
+              epi1[\([2]\)], \[IndentingNewLine]e13 \[Rule] 
+              epi1[\([3]\)]}; \[IndentingNewLine]focalLen1 = 
+          Sqrt[\((e11\^2\ f11\ f13\^2\ f21 + e11\ e12\ f13\^2\ f21\^2 + 
+                    e11\^2\ f12\ f13\^2\ f22 + e11\ e12\ f13\^2\ f22\^2 - 
+                    e11\^2\ f11\^2\ f13\ f23 - e11\^2\ f12\^2\ f13\ f23 + 
+                    e12\^2\ f13\ f21\^2\ f23 + e12\^2\ f13\ f22\^2\ f23 - 
+                    e11\ e12\ f11\^2\ f23\^2 - e11\ e12\ f12\^2\ f23\^2 - 
+                    e12\^2\ f11\ f21\ f23\^2 - 
+                    e12\^2\ f12\ f22\ f23\^2)\)/\((e13\^2\ \((\(-f11\)\ \
+f13\^2\ f21 - f12\ f13\^2\ f22 + f11\^2\ f13\ f23 + f12\^2\ f13\ f23 - 
+                        f13\ f21\^2\ f23 - f13\ f22\^2\ f23 + 
+                        f11\ f21\ f23\^2 + f12\ f22\ f23\^2)\))\) /. 
+              replace]; \[IndentingNewLine]focalLen2 = 
+          Sqrt[\((e11\ e12\ f13\^2 - e11\^2\ f13\ f23 + e12\^2\ f13\ f23 - 
+                    e11\ e12\ f23\^2)\)/\((\(-e11\)\ e12\ f11\^2 - 
+                    e11\ e12\ f12\^2 + e11\^2\ f11\ f21 - e12\^2\ f11\ f21 + 
+                    e11\ e12\ f21\^2 + e11\^2\ f12\ f22 - e12\^2\ f12\ f22 + 
+                    e11\ e12\ f22\^2)\) /. 
+              replace]; \[IndentingNewLine]{focalLen1, 
+          focalLen2}]\)\(\[IndentingNewLine]\)
+    \)\)\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ \ \:30c6\:30b9\:30c8*) \)], "Input"],
+
+Cell[BoxData[{
+    \(\(testA1 = {{2.3, 0, 0}, {0, 2.3, 0}, {0, 0, 
+            1}};\)\), "\[IndentingNewLine]", 
+    \(\(testA2 = {{3.4, 0, 0}, {0, 3.4, 0}, {0, 0, 1}};\)\)}], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ \:56de\:8ee2\:884c\:5217\:306e\:5b9a\:7fa9\ *) \)\(\
+\[IndentingNewLine]\)\(\ \)\(\(rotationX[
+          r_] = {{1, 0, 0}, {0, Cos[r], \(-Sin[r]\)}, {0, Sin[r], 
+            Cos[r]}};\)\[IndentingNewLine]
+    \(rotationY[
+          r_] = {{Cos[r], 0, Sin[r]}, {0, 1, 0}, {\(-Sin[r]\), 0, 
+            Cos[r]}};\)\[IndentingNewLine]
+    \(rotationZ[
+          r_] = {{Cos[r], \(-Sin[r]\), 0}, {Sin[r], Cos[r], 0}, {0, 0, 
+            1}};\)\[IndentingNewLine]
+    \(testR = 
+        rotationX[0.1] . rotationY[0.2] . 
+          rotationZ[0.1];\)\[IndentingNewLine]
+    \(testT = {0.5, 0.05, 0.03};\)\)\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\(testRCol1 = {testR[\([1, 1]\)], testR[\([2, 1]\)], 
+          testR[\([3, 1]\)]};\)\), "\[IndentingNewLine]", 
+    \(\(testRCol2 = {testR[\([1, 2]\)], testR[\([2, 2]\)], 
+          testR[\([3, 2]\)]};\)\), "\[IndentingNewLine]", 
+    \(\(testRCol3 = {testR[\([1, 3]\)], testR[\([2, 3]\)], 
+          testR[\([3, 3]\)]};\)\)}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(testE = 
+      Transpose[{Cross[testT, testRCol1], Cross[testT, testRCol2], 
+          Cross[testT, testRCol3]}]\)], "Input"],
+
+Cell[BoxData[
+    \({{\(-0.012908209501669984`\), \(-0.023688125428167117`\), 
+        0.051693818210308475`}, {0.12261637976371151`, \
+\(-0.06247001029862235`\), \(-0.48162508367705614`\)}, \
+{0.010776192088313883`, 
+        0.49891877430048925`, \(-0.05885516404338092`\)}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(testF = Inverse[Transpose[testA1]] . testE . Inverse[testA2]\)], "Input"],
+
+Cell[BoxData[
+    \({{\(-0.0016506661766841413`\), \(-0.0030291720496377393`\), 
+        0.02247557313491673`}, {0.015679843959553904`, \
+\(-0.007988492365552732`\), \(-0.20940221029437225`\)}, \
+{0.003169468261268789`, 
+        0.14674081597073213`, \(-0.05885516404338092`\)}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(calcF1F2FromFMat[testF]\)], "Input"],
+
+Cell[BoxData[
+    \({2.300000000000001`, 3.3999999999999972`}\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1600}, {0, 1117}},
+WindowSize->{509, 740},
+WindowMargins->{{1, Automatic}, {Automatic, -1}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 418, 8, 110, "Input"],
+Cell[2175, 61, 318, 5, 90, "Input"],
+Cell[2496, 68, 356, 7, 90, "Input"],
+
+Cell[CellGroupData[{
+Cell[2877, 79, 71, 1, 30, "Input"],
+Cell[2951, 82, 315, 6, 86, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3303, 93, 48, 1, 30, "Input"],
+Cell[3354, 96, 107, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3498, 103, 48, 1, 30, "Input"],
+Cell[3549, 106, 183, 3, 67, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3769, 114, 140, 3, 50, "Input"],
+Cell[3912, 119, 309, 6, 86, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4258, 130, 140, 3, 50, "Input"],
+Cell[4401, 135, 312, 5, 67, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4750, 145, 86, 1, 30, "Input"],
+Cell[4839, 148, 1046, 16, 240, "Output"]
+}, Open  ]],
+Cell[5900, 167, 515, 9, 150, "Input"],
+Cell[6418, 178, 2292, 37, 721, "Input"],
+Cell[8713, 217, 61, 1, 30, "Input"],
+Cell[8777, 220, 184, 3, 50, "Input"],
+Cell[8964, 225, 644, 14, 190, "Input"],
+Cell[9611, 241, 358, 6, 70, "Input"],
+
+Cell[CellGroupData[{
+Cell[9994, 251, 145, 3, 70, "Input"],
+Cell[10142, 256, 289, 5, 67, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10468, 266, 93, 1, 30, "Input"],
+Cell[10564, 269, 292, 5, 67, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10893, 279, 56, 1, 30, "Input"],
+Cell[10952, 282, 75, 1, 29, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

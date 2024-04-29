@@ -1,0 +1,10 @@
+^C:\USERS\EVAHN\DESKTOP\COURS KYUSHU\COMPUTER VISION\REPORT1\BUILD\CMAKEFILES\DF5AE47A1A1EB13524E96A80E4DAFBC5\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/evahn/Desktop/Cours Kyushu/Computer Vision/report1" "-BC:/Users/evahn/Desktop/Cours Kyushu/Computer Vision/report1/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/evahn/Desktop/Cours Kyushu/Computer Vision/report1/build/report1.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

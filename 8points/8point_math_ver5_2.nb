@@ -1,0 +1,458 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     13852,        354]*)
+(*NotebookOutlinePosition[     14498,        376]*)
+(*  CellTagsIndexPosition[     14454,        372]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+    \(uvMat = {{502, 548, 653, 580}, {635, 217, 784, 345}, {736, 622, 849, 
+          766}, {799, 139, 935, 286}, {1224, 215, 1326, 340}, {1402, 573, 
+          1444, 724}, {713, 1040, 815, 1054}, {1379, 756, 1408, 
+          879}}\)], "Input"],
+
+Cell[BoxData[
+    \({{502, 548, 653, 580}, {635, 217, 784, 345}, {736, 622, 849, 
+        766}, {799, 139, 935, 286}, {1224, 215, 1326, 340}, {1402, 573, 1444, 
+        724}, {713, 1040, 815, 1054}, {1379, 756, 1408, 879}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(eightpoint[
+        uvmat_] := \[IndentingNewLine]Module[{i, mat = Array[0, {8, 9}], 
+          mattmat, fvec, fmat = Array[0, {3, 3}], 
+          fsubmat = Array[0, {2, 2}], \[IndentingNewLine]hmat = 
+            Array[0, {2, 2}], e1vec, e2vec}, \[IndentingNewLine] (*\ 
+          F\:3092\:3068\:3082\:3081\:308b\ *) \[IndentingNewLine]For[i = 1, \ 
+          i \[LessEqual] 8, \ \(i++\), \ \[IndentingNewLine]mat[\([i, 1]\)] = 
+            uvmat[\([i, 1]\)]*
+              uvmat[\([i, 3]\)]; \[IndentingNewLine]mat[\([i, 2]\)] = 
+            uvmat[\([i, 2]\)]*
+              uvmat[\([i, 3]\)]; \[IndentingNewLine]mat[\([i, 3]\)] = 
+            uvmat[\([i, 3]\)]; \[IndentingNewLine]mat[\([i, 4]\)] = 
+            uvmat[\([i, 1]\)]*
+              uvmat[\([i, 4]\)]; \[IndentingNewLine]mat[\([i, 5]\)] = 
+            uvmat[\([i, 2]\)]*
+              uvmat[\([i, 4]\)]; \[IndentingNewLine]mat[\([i, 6]\)] = 
+            uvmat[\([i, 4]\)]; \[IndentingNewLine]mat[\([i, 7]\)] = 
+            uvmat[\([i, 1]\)]; \[IndentingNewLine]mat[\([i, 8]\)] = 
+            uvmat[\([i, 2]\)]; \[IndentingNewLine]mat[\([i, 9]\)] = 
+            1.0;\[IndentingNewLine]]; \[IndentingNewLine]mattmat = 
+          Transpose[mat] . mat; \[IndentingNewLine]eigenveclist = 
+          Eigenvectors[mattmat]; \[IndentingNewLine]fvec = 
+          eigenveclist[\([9]\)]; \[IndentingNewLine]fmat[\([1, 1]\)] = 
+          fvec[\([1]\)]; \[IndentingNewLine]fmat[\([1, 2]\)] = 
+          fvec[\([2]\)]; \[IndentingNewLine]fmat[\([1, 3]\)] = 
+          fvec[\([3]\)]; \[IndentingNewLine]fmat[\([2, 1]\)] = 
+          fvec[\([4]\)]; \[IndentingNewLine]fmat[\([2, 2]\)] = 
+          fvec[\([5]\)]; \[IndentingNewLine]fmat[\([2, 3]\)] = 
+          fvec[\([6]\)]; \[IndentingNewLine]fmat[\([3, 1]\)] = 
+          fvec[\([7]\)]; \[IndentingNewLine]fmat[\([3, 2]\)] = 
+          fvec[\([8]\)]; \[IndentingNewLine]fmat[\([3, 3]\)] = 
+          fvec[\([9]\)]; \[IndentingNewLine]Print["\<F=\>"]; \
+\[IndentingNewLine]Print[fmat]; \[IndentingNewLine] (*\ 
+          H\:3092\:3068\:3082\:3081\:308b\ *) \[IndentingNewLine]hmat[\([1, 
+              1]\)] = \(-fmat[\([2, 1]\)]\); \[IndentingNewLine]hmat[\([1, 
+              2]\)] = \(-fmat[\([2, 2]\)]\); \[IndentingNewLine]hmat[\([2, 
+              1]\)] = fmat[\([1, 1]\)]; \[IndentingNewLine]hmat[\([2, 2]\)] = 
+          fmat[\([1, 
+              2]\)]; \[IndentingNewLine]Print["\<H=\>"]; \
+\[IndentingNewLine]Print[hmat]; \[IndentingNewLine] (*\ 
+          e\:3092\:6c42\:3081\:308b*) \[IndentingNewLine]eigenveclist = 
+          Eigenvectors[Transpose[fmat] . fmat]; \[IndentingNewLine]fvec = 
+          eigenveclist[\([3]\)]; \[IndentingNewLine]e1vec = 
+          fvec/fvec[\([3]\)]; \[IndentingNewLine]Print["\<e1=\>"]; \
+\[IndentingNewLine]Print[e1vec]; \[IndentingNewLine]eigenveclist = 
+          Eigenvectors[fmat . Transpose[fmat]]; \[IndentingNewLine]fvec = 
+          eigenveclist[\([3]\)]; \[IndentingNewLine]e2vec = 
+          fvec/fvec[\([3]\)]; \[IndentingNewLine]Print["\<e2=\>"]; \
+\[IndentingNewLine]Print[
+          e2vec]; \[IndentingNewLine]fmat\[IndentingNewLine]]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell"\), \(\(:\)\(\ \)\), "\<\"\:30b9\:30da\:30eb\
+\:9593\:9055\:3044\:306e\:53ef\:80fd\:6027\:304c\:3042\:308a\:307e\:3059\:ff0e\
+\:65b0\:898f\:30b7\:30f3\:30dc\:30eb\\\"\\!\\(fmat\\)\\\"\:306f\:3059\:3067\
+\:306b\:3042\:308b\:30b7\:30f3\:30dc\:30eb\\!\\({fMat, mat}\\)\:306b\:4f3c\
+\:3066\:3044\:307e\:3059\:ff0e \\!\\(\\*ButtonBox[\\\"\:8a73\:7d30\\\", \
+ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::spell\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell"\), \(\(:\)\(\ \)\), "\<\"\:30b9\:30da\:30eb\
+\:9593\:9055\:3044\:306e\:53ef\:80fd\:6027\:304c\:3042\:308a\:307e\:3059\:ff0e\
+\:65b0\:898f\:30b7\:30f3\:30dc\:30eb\\\"\\!\\(hmat\\)\\\"\:306f\:3059\:3067\
+\:306b\:3042\:308b\:30b7\:30f3\:30dc\:30eb\\!\\({fmat, mat}\\)\:306b\:4f3c\
+\:3066\:3044\:307e\:3059\:ff0e \\!\\(\\*ButtonBox[\\\"\:8a73\:7d30\\\", \
+ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::spell\\\"]\\)\"\>"}]], "Message"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(\(\( (*\ \:76f4\:7dda\:306e\:30d1\:30e9\:30e1 - \
+\:30bf\:3068\:753b\:50cf\:30b5\:30a4\:30ba\:304b\:3089, \:76f4\:7dda\:306e\
+\:7aef\:70b9\:3092\:6c42\:3081\:308b\:95a2\:6570\ \
+*) \)\(\[IndentingNewLine]\)\(drawline[a_, b_, c_, width_, 
+        height_] := \[IndentingNewLine]Module[{linevertex = {}, y0, 
+          y1}, \[IndentingNewLine]Which[\[IndentingNewLine]b == 
+            0\ , \[IndentingNewLine]If[
+            0 \[LessEqual] \((\(-c\)/a)\)\  && \ \((\(-c\)/a)\) \[LessEqual] 
+                width - 1, \[IndentingNewLine]linevertex = {{\(-c\)/a, 
+                  0}, {\(-c\)/a, height - 1}}], \[IndentingNewLine]a \[Equal] 
+            0\ , \[IndentingNewLine]If[
+            0 \[LessEqual] \((\(-c\)/b)\)\  && \ \((\(-c\)/b)\) \[LessEqual] 
+                height - 
+                  1, \[IndentingNewLine]linevertex = {{0, \(-c\)/b}, {width - 
+                    1, \(-c\)/
+                    b}}], \[IndentingNewLine]True, \[IndentingNewLine]x0 = \
+\(-c\)/a; \[IndentingNewLine]x1 = \((\(-c\) - b \((height - 1)\))\)/
+              a; \[IndentingNewLine]y0 = \(-c\)/
+              b; \[IndentingNewLine]y1 = \((\(-c\) - a \((width - 1)\))\)/
+              b; \[IndentingNewLine]Which[\[IndentingNewLine]y0 < 
+              0, \[IndentingNewLine]If[
+              0 \[LessEqual] x0 && 
+                x0 \[LessEqual] width - 1, \[IndentingNewLine]linevertex = 
+                Append[linevertex, {x0, 0}]], \[IndentingNewLine]height - 1 < 
+              y0, \[IndentingNewLine]If[
+              0 \[LessEqual] x1 && 
+                x1 \[LessEqual] width - 1, \[IndentingNewLine]linevertex = 
+                Append[linevertex, {x1, 
+                    height - 
+                      1}]], \[IndentingNewLine]True, \
+\[IndentingNewLine]linevertex = 
+              Append[linevertex, {0, 
+                  y0}]]; \[IndentingNewLine]Which[\[IndentingNewLine]y1 < 
+              0, \[IndentingNewLine]If[
+              0 \[LessEqual] x0 && 
+                x0 \[LessEqual] width - 1, \[IndentingNewLine]linevertex = 
+                Append[linevertex, {x0, 0}]], \[IndentingNewLine]height - 1 < 
+              y1, \[IndentingNewLine]If[
+              0 \[LessEqual] x1 && 
+                x1 \[LessEqual] width - 1, \[IndentingNewLine]linevertex = 
+                Append[linevertex, {x1, 
+                    height - 
+                      1}]], \[IndentingNewLine]True, \
+\[IndentingNewLine]linevertex = 
+              Append[linevertex, {width - 1, 
+                  y1}]]]; \[IndentingNewLine]linevertex]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ \:76f4\:7dda\:306e\:30d1\:30e9\:30e1 - \
+\:30bf\:3068\:753b\:50cf\:3092\:53d7\:3051\:53d6\:3063\:3066, \:76f4\:7dda\
+\:3092\:5f15\:304f\ *) \)\(\[IndentingNewLine]\)\(\(drawlineonimage[
+        lineparam_, 
+        image_] := \[IndentingNewLine]Module[{linevertex, imagelist, 
+          imageraster, rasterdimensions, width, 
+          height}, \[IndentingNewLine]imagelist = 
+          image /. Graphics \[Rule] List; \[IndentingNewLine]imageraster = 
+          imagelist[\([1]\)]; \[IndentingNewLine]rasterdimensions = 
+          Dimensions[imageraster[\([1]\)]]; \[IndentingNewLine]Print[
+          rasterdimensions]; \[IndentingNewLine]width = 
+          rasterdimensions[\([2]\)]; \[IndentingNewLine]height = 
+          rasterdimensions[\([1]\)]; \[IndentingNewLine]linevertex = 
+          drawline[lineparam[\([1]\)], lineparam[\([2]\)], 
+            lineparam[\([3]\)], width, height]; \[IndentingNewLine]Print[
+          linevertex]; \[IndentingNewLine]Show[\[IndentingNewLine]Graphics[\
+\[IndentingNewLine]{imageraster, \[IndentingNewLine]Line[{{\(linevertex[\([1]\
+\)]\)[\([1]\)], height - 
+                      1 - \(linevertex[\([1]\)]\)[\([2]\)]}, \
+{\(linevertex[\([2]\)]\)[\([1]\)], 
+                    height - 
+                      1 - \(linevertex[\([2]\)]\)[\([2]\)]}}]}]]]\)\(\
+\[IndentingNewLine]\)
+    \)\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(fMat = eightpoint[uvMat]\)], "Input"],
+
+Cell[BoxData[
+    \("F="\)], "Print"],
+
+Cell[BoxData[
+    \({{2.0644550316108718`*^-7, 
+        1.0964469801004202`*^-6, \(-0.00465425828112553`\)}, \
+{\(-1.3563331664735476`*^-6\), 7.727823108444003`*^-8, 
+        0.0006674011064170822`}, {0.004131051541495571`, \
+\(-0.0009330530260618413`\), 0.9999799779384272`}}\)], "Print"],
+
+Cell[BoxData[
+    \("H="\)], "Print"],
+
+Cell[BoxData[
+    \({{1.3563331664735476`*^-6, \(-7.727823108444003`*^-8\)}, \
+{2.0644550316108718`*^-7, 1.0964469801004202`*^-6}}\)], "Print"],
+
+Cell[BoxData[
+    \("e1="\)], "Print"],
+
+Cell[BoxData[
+    \({689.5853046552511`, 4124.837806686297`, 1.`}\)], "Print"],
+
+Cell[BoxData[
+    \("e2="\)], "Print"],
+
+Cell[BoxData[
+    \({665.4281753679091`, 3142.1803277583954`, 1.`}\)], "Print"],
+
+Cell[BoxData[
+    \({{2.0644550316108718`*^-7, 
+        1.0964469801004202`*^-6, \(-0.00465425828112553`\)}, \
+{\(-1.3563331664735476`*^-6\), 7.727823108444003`*^-8, 
+        0.0006674011064170822`}, {0.004131051541495571`, \
+\(-0.0009330530260618413`\), 0.9999799779384272`}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Eigenvalues[fMat]\)], "Input"],
+
+Cell[BoxData[
+    \({0.9999601277075664`, 0.000020121654561939643`, 
+      1.244228360046067`*^-8}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(line1 = fMat . {502, 548, 1}\)], "Input"],
+
+Cell[BoxData[
+    \({\(-0.003949737474321389`\), 0.000028885261027075353`, 
+      2.562424994664997`}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({653, 580, 1} . line1\)], "Input"],
+
+Cell[BoxData[
+    \(\(-1.2467116607475792`*^-7\)\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \( (*\:5225\:306e\:5bfe\:5fdc\:70b9 {1131, 7} {1262, 112}*) \)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({1262, 112, 1} . fMat . {1131, 7, 1}\)], "Input"],
+
+Cell[BoxData[
+    \(\(-0.0006555217053059404`\)\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \( (*\:5225\:306e\:5bfe\:5fdc\:70b9 {601, 579} {739, 659}*) \)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({739, 659, 1} . fMat . {601, 579, 1}\)], "Input"],
+
+Cell[BoxData[
+    \(\(-0.004037449430617554`\)\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \( (*\:5bfe\:5fdc\:70b9\:3067\:306a\:3044 {601, 579} {763, 
+          622}*) \)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \({763, 622, 1} . fMat . {601, 579, 1}\)], "Input"],
+
+Cell[BoxData[
+    \(\(-0.09371390903334609`\)\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(image1 = 
+      Import["\<C:\\8point\\CA320197.JPG\>", "\<JPEG\>"]\)], \
+"Input"],
+
+Cell[BoxData[
+    \(image2 = 
+      Import["\<C:\\8point\\CA320198.JPG\>", "\<JPEG\>"]\)], \
+"Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(lineparam = fMat . {601, 579, 1}\)], "Input"],
+
+Cell[BoxData[
+    \({\(-0.003895341732247573`\), \(-0.00010301103083562918`\), 
+      2.942504252287459`}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(\( (*\:753b\:50cf1\:306e601, 
+      579  \:306b\:5bfe\:3059\:308b\:30a8\:30d4\:30dd - \:30e9\:7dda\:3092\
+\:753b\:50cf2\:306b\:5f15\:304f*) \)\(\[IndentingNewLine]\)\(drawlineonimage[
+      lineparam, image2]\)\)\)], "Input"],
+
+Cell[BoxData[
+    TagBox[\(\[SkeletonIndicator]  Graphics  \[SkeletonIndicator]\),
+      False,
+      Editable->False]], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1600}, {0, 1102}},
+WindowSize->{909, 740},
+WindowMargins->{{48, Automatic}, {Automatic, 78}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 258, 4, 50, "Input"],
+Cell[2037, 59, 236, 3, 48, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2310, 67, 3130, 50, 990, "Input"],
+Cell[5443, 119, 515, 7, 22, "Message"],
+Cell[5961, 128, 515, 7, 22, "Message"]
+}, Open  ]],
+Cell[6491, 138, 2570, 46, 690, "Input"],
+Cell[9064, 186, 1373, 24, 350, "Input"],
+
+Cell[CellGroupData[{
+Cell[10462, 214, 57, 1, 30, "Input"],
+Cell[10522, 217, 37, 1, 25, "Print"],
+Cell[10562, 220, 289, 5, 44, "Print"],
+Cell[10854, 227, 37, 1, 25, "Print"],
+Cell[10894, 230, 143, 2, 25, "Print"],
+Cell[11040, 234, 38, 1, 25, "Print"],
+Cell[11081, 237, 78, 1, 25, "Print"],
+Cell[11162, 240, 38, 1, 25, "Print"],
+Cell[11203, 243, 79, 1, 25, "Print"],
+Cell[11285, 246, 290, 5, 48, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11612, 256, 50, 1, 30, "Input"],
+Cell[11665, 259, 112, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11814, 266, 61, 1, 30, "Input"],
+Cell[11878, 269, 115, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12030, 276, 54, 1, 30, "Input"],
+Cell[12087, 279, 62, 1, 29, "Output"]
+}, Open  ]],
+Cell[12164, 283, 91, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[12280, 288, 69, 1, 30, "Input"],
+Cell[12352, 291, 61, 1, 29, "Output"]
+}, Open  ]],
+Cell[12428, 295, 91, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[12544, 300, 69, 1, 30, "Input"],
+Cell[12616, 303, 60, 1, 29, "Output"]
+}, Open  ]],
+Cell[12691, 307, 108, 2, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[12824, 313, 69, 1, 30, "Input"],
+Cell[12896, 316, 59, 1, 29, "Output"]
+}, Open  ]],
+Cell[12970, 320, 117, 3, 30, "Input"],
+Cell[13090, 325, 117, 3, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[13232, 332, 65, 1, 30, "Input"],
+Cell[13300, 335, 119, 2, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13456, 342, 247, 4, 50, "Input"],
+Cell[13706, 348, 130, 3, 29, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
