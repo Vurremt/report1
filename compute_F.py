@@ -258,3 +258,22 @@ if var == "y" :
     plt.savefig(folder_name + "output/" + epipoar_lines_not_computed)
     plt.show()
 
+# B-7 : Find intrinsic camera parameters with Kruppa equations
+print("Would you like to find intrinsic camera parameters with Kruppa equations ?")
+var = input("[y/n] : ")
+if var == "y" :
+
+    # Find epipole
+
+    # Compute SVD
+    U_F, S_F, Vt_F = np.linalg.svd(F)
+
+    # Epipole is the smallest singular value --> null space of F
+    e = Vt_F[-1]
+
+    # Normalize the epipole (make the last coordinate 1)
+    # e = e / e[2]  on a pas normalisé le reste donc ici je pense pas qu'il faille le faire ? 
+
+    print("Epipole: ", e)
+
+
