@@ -6,6 +6,7 @@ using namespace std;
 using namespace cv;
 
 int main() {
+    srand (time(NULL));
     // Load Images
     cv::Mat img1 = cv::imread("..\\..\\img\\same_plane\\img1.JPG", cv::IMREAD_COLOR);
     cv::Mat img2 = cv::imread("..\\..\\img\\same_plane\\img2.JPG", cv::IMREAD_COLOR);
@@ -73,7 +74,7 @@ int main() {
         std::stringstream colorHex;
         colorHex << std::hex << std::setfill('0') << std::setw(2) << static_cast<int>(color[2])
                  << std::setw(2) << static_cast<int>(color[1]) << std::setw(2) << static_cast<int>(color[0]);
-        outFile << "img1[ " << pt1.x << " ; " << pt1.y << " ]/img2[ " << pt2.x << " ; " << pt2.y << " ]/";
+        outFile << "img1[ " << (int)(pt1.x + 0.5) << " ; " << (int)(pt1.y + 0.5) << " ]/img2[ " << (int)(pt2.x + 0.5) << " ; " << (int)(pt2.y + 0.5) << " ]/";
         outFile << colorHex.str() << "/";
         outFile << std::endl;
 
