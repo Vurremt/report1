@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 #Name of current folder
-folder_name = "./img/same_plane/"
+folder_name = "./img/not_same_plane/"
 #Name of list of points file
 list_of_point_name = "list_of_points.txt"
 #Name of image 1 loaded with circle 
