@@ -265,15 +265,53 @@ if var == "y" :
 
     # Find epipole
 
-    # Compute SVD
-    U_F, S_F, Vt_F = np.linalg.svd(F)
+    # Compute SVD of F.T
+    U_FT, S_FT, Vt_FT = np.linalg.svd(F.T)
 
-    # Epipole is the smallest singular value --> null space of F
-    e = Vt_F[-1]
+    # The left epipole e' is the last column of Vt
+    e1 = Vt_FT[-1]
 
     # Normalize the epipole (make the last coordinate 1)
-    # e = e / e[2]  on a pas normalisé le reste donc ici je pense pas qu'il faille le faire ? 
+    e1 = e1 / e1[2]
 
-    print("Epipole: ", e)
+    # Compute SVD of F
+    U_F, S_F, Vt_F = np.linalg.svd(F)
+
+    # Right Epipole --> right null space of F
+    e2 = Vt_F[-1]
+
+    # Normalize the epipole (make the last coordinate 1)
+    e2 = e2 / e2[2]
+
+    print("Left epipole: ", e1)
+    print("Right epipole: ", e2)
+    
+    # Extend epipoles to matrix form
+    e1x = np.array([[0, e1[2], e1[1]],
+            [e1[2], 0, -e1[0]],
+            [-e1[1], e1[0], 0]])
+    e2x = np.array([[0, e2[2], e2[1]],
+            [e2[2], 0, -e2[0]],
+            [-e2[1], e2[0], 0]])
+    
+    print("Left epipole (matrix form): ", e1x)
+    print("Right epipole (matrix form): ", e2x)
+
+    # # Compute w1* and w2* using the Kruppa equations : e1^T * w1* * e1 = F * w2* * F^T
+    # # Reshape F for matrix multiplication
+    # F_reshaped = F.reshape(3, 3, 1)
+
+    # # Solve for w2* using F * w2* * F^T = e1^T * w1* * e1
+    # w2st = np.linalg.solve(F_reshaped @ F_reshaped.transpose((0, 2, 1)), e1.transpose((1, 0)) @ e1x)
+
+    # # Solve for w1* using e1^T * w1* * e1 = F * w2* * F^T
+    # w1st = np.linalg.solve(e1x @ e1x.transpose(), F_reshaped.transpose((0, 2, 1)) @ w2st)
+
+    # print("w1*:")
+    # print(w1st)
+
+    # print("\nw2*:")
+    # print(w2st)
+
 
 
