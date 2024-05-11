@@ -1,3 +1,16 @@
+/*** ** *
+
+©Copyright Code :
+Chloé BRICE, INSA Lyon
+Evahn LE GAL, ISIMA Clermont INP
+
+Code co-written with Chloé BRICE, with the agreement of the professor, the report and the images will nevertheless be different for each student
+Only the code was written and used as a team
+
+VS Code with OpenCV 4.9.0 and CMake 3.29.2
+
+* ** ***/
+
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <fstream>
@@ -8,8 +21,8 @@ using namespace cv;
 int main() {
     srand (time(NULL));
     // Load Images
-    cv::Mat img1 = cv::imread("..\\..\\img\\same_plane\\img1.JPG", cv::IMREAD_COLOR);
-    cv::Mat img2 = cv::imread("..\\..\\img\\same_plane\\img2.JPG", cv::IMREAD_COLOR);
+    cv::Mat img1 = cv::imread("..\\..\\img\\not_same_plane\\img1.jpg", cv::IMREAD_COLOR);
+    cv::Mat img2 = cv::imread("..\\..\\img\\not_same_plane\\img2.jpg", cv::IMREAD_COLOR);
 
     if (img1.empty() || img2.empty()) {
         std::cerr << "Error : impossible to load image." << std::endl;
@@ -66,7 +79,7 @@ int main() {
     std::cout << "Number of points remaining : " << filteredMatches.size() << std::endl;
 
     // Write features points in the file
-    std::ofstream outFile("..\\..\\img\\same_plane\\extra_points\\extra_points.txt");
+    std::ofstream outFile("..\\..\\img\\not_same_plane\\extra_points\\extra_points.txt");
     for (const cv::DMatch& match : filteredMatches) {
         cv::Point2f pt1 = keypoints1[match.queryIdx].pt;
         cv::Point2f pt2 = keypoints2[match.trainIdx].pt;
@@ -85,8 +98,8 @@ int main() {
     outFile.close();
 
     // Save images with highlighted points
-    cv::imwrite("..\\..\\img\\same_plane\\extra_points\\img1_extra_points.jpg", img1);
-    cv::imwrite("..\\..\\img\\same_plane\\extra_points\\img2_extra_points.jpg", img2);
+    cv::imwrite("..\\..\\img\\not_same_plane\\extra_points\\img1_extra_points.jpg", img1);
+    cv::imwrite("..\\..\\img\\not_same_plane\\extra_points\\img2_extra_points.jpg", img2);
 
     return 0;
 }
